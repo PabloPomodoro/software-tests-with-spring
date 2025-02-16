@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.*;
 import java.time.LocalDate;
 
 @RestController
-@RequestMapping(name = "persons")
+@RequestMapping("/persons")
 public class PersonController {
 
     private static final int MINIMUM_AGE = 18;
