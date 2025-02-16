@@ -52,7 +52,8 @@ public class PersonService {
             );
         }
 
-        if (personRepository.findByEmailAddress(emailAddress)) {
+        if (personRepository.existsByEmailAddress(emailAddress)) {
+
             throw new PersonCreationException(
                     String.format("The email address: %s is already in use.", emailAddress)
             );

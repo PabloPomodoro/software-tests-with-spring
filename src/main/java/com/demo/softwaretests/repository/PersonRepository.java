@@ -12,5 +12,5 @@ public interface PersonRepository extends JpaRepository<Person, Long> {
     List<Person> findAllByAgeBetween(int fromAge, int toAge);
     List<Person> findAllByEmailAddressEndsWith(String emailDomain);
 
-    boolean findByEmailAddress(String emailAddress);
+    boolean existsByEmailAddress(String emailAddress);
 }
