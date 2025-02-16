@@ -20,6 +20,14 @@ public class PersonService {
         this.personRepository = personRepository;
     }
 
+    public List<Person> getAllPersonsByEmailDomain(String domain) {
+        return personRepository.findAllByEmailEndsWith(domain);
+    }
+
+    public List<Person> getAllPersonsByAgeRange(int fromAge, int toAge) {
+        return personRepository.findAllByAgeBetween(fromAge, toAge);
+    }
+
     public void createPerson(String firstName, String lastName, String email, LocalDate dateOfBirth) {
         Person person = new Person();
 

@@ -1,5 +1,6 @@
 package com.demo.softwaretests.controller;
 
+import com.demo.softwaretests.entity.Person;
 import com.demo.softwaretests.exception.PersonCreationErrorResponse;
 import com.demo.softwaretests.exception.PersonCreationException;
 import com.demo.softwaretests.service.PersonService;
@@ -8,6 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
+import java.util.List;
 
 @RestController
 @RequestMapping("/persons")
@@ -17,6 +19,22 @@ public class PersonController {
 
     public PersonController(PersonService personService) {
         this.personService = personService;
+    }
+
+    @GetMapping("/email-domain/{domain}")
+    public ResponseEntity<List<Person>> getAllPersonsByEmailDomain(@PathVariable String domain) {
+
+        return ResponseEntity
+                .status(HttpStatus.OK)
+                .body(personService.getAllPersonsByEmailDomain(domain));
+    }
+
+    @GetMapping("/age-range")
+    public ResponseEntity<List<Person>> getAllPersonsByAgeRange(@RequestParam("fromAge") int fromAge, @RequestParam("toAge") int toAge) {
+
+        return ResponseEntity
+                .status(HttpStatus.OK)
+                .body(personService.getAllPersonsByAgeRange(fromAge, toAge));
     }
 
     @PostMapping("/create")
