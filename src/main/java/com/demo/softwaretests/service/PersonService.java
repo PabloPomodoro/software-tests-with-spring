@@ -24,7 +24,7 @@ public class PersonService {
         Person person = new Person();
 
         person.setFullName(firstName + " " + lastName);
-        person.setEmail(email);
+        person.setEmailAddress(email);
         person.setAge(calculateAge(dateOfBirth, LocalDate.now()));
 
         personRepository.save(person);

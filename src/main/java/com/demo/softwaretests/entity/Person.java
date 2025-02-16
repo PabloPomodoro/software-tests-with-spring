@@ -13,7 +13,7 @@ public class Person {
     private String fullName;
 
     @Column(nullable = false, unique = true)
-    private String email;
+    private String emailAddress;
 
     @Column
     private Integer age;
@@ -34,12 +34,12 @@ public class Person {
         this.fullName = fullName;
     }
 
-    public String getEmail() {
-        return email;
+    public String getEmailAddress() {
+        return emailAddress;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+    public void setEmailAddress(String emailAddress) {
+        this.emailAddress = emailAddress;
     }
 
     public Integer getAge() {
