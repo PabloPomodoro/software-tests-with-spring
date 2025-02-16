@@ -25,7 +25,6 @@ public class PersonServiceTest {
     private PersonService personService;
 
     private Person richard;
-    private Person guenther;
 
     @BeforeEach
     public void setUp() {
@@ -33,11 +32,6 @@ public class PersonServiceTest {
         richard.setFullName("Richard Rüdiger");
         richard.setEmailAddress("richard.ruediger@gmail.com");
         richard.setAge(41);
-
-        guenther = new Person();
-        guenther.setFullName("Günther Grandiger");
-        guenther.setEmailAddress("guenther.grandiger@yahoo.com");
-        guenther.setAge(55);
     }
 
     @Test
