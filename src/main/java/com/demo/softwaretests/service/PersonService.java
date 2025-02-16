@@ -21,7 +21,7 @@ public class PersonService {
     }
 
     public List<Person> getAllPersonsByEmailDomain(String domain) {
-        return personRepository.findAllByEmailEndsWith(domain);
+        return personRepository.findAllByEmailAddressEndsWith(domain);
     }
 
     public List<Person> getAllPersonsByAgeRange(int fromAge, int toAge) {
@@ -52,7 +52,7 @@ public class PersonService {
             );
         }
 
-        if (personRepository.findByEmail(emailAddress)) {
+        if (personRepository.findByEmailAddress(emailAddress)) {
             throw new PersonCreationException(
                     String.format("The email address: %s is already in use.", emailAddress)
             );

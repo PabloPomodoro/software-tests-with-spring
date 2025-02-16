@@ -10,7 +10,7 @@ import java.util.List;
 public interface PersonRepository extends JpaRepository<Person, Long> {
 
     List<Person> findAllByAgeBetween(int fromAge, int toAge);
-    List<Person> findAllByEmailEndsWith(String emailDomain);
+    List<Person> findAllByEmailAddressEndsWith(String emailDomain);
 
-    boolean findByEmail(String emailAddress);
+    boolean findByEmailAddress(String emailAddress);
 }
