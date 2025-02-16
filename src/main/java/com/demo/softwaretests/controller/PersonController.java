@@ -13,8 +13,6 @@ import java.time.LocalDate;
 @RequestMapping("/persons")
 public class PersonController {
 
-    private static final int MINIMUM_AGE = 18;
-
     private final PersonService personService;
 
     public PersonController(PersonService personService) {
@@ -29,13 +27,7 @@ public class PersonController {
             @RequestParam("email") String email,
             @RequestParam("dateOfBirth") LocalDate dateOfBirth
     ) {
-        if (personService.calculateAge(dateOfBirth, LocalDate.now()) < MINIMUM_AGE) {
-
-            throw new PersonCreationException(
-                    String.format("The minimum required age is %d.", MINIMUM_AGE)
-            );
-        }
-
+        personService.validateParameters(dateOfBirth, email);
         personService.createPerson(firstName, lastName, email, dateOfBirth);
     }
 
