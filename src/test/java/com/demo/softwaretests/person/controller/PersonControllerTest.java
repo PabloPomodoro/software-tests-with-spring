@@ -1,9 +1,9 @@
-package com.demo.softwaretests.controller;
+package com.demo.softwaretests.person.controller;
 
-import com.demo.softwaretests.entity.Person;
-import com.demo.softwaretests.exception.PersonCreationErrorResponse;
-import com.demo.softwaretests.exception.PersonCreationException;
-import com.demo.softwaretests.service.PersonService;
+import com.demo.softwaretests.person.entity.Person;
+import com.demo.softwaretests.person.exception.PersonCreationErrorResponse;
+import com.demo.softwaretests.person.exception.PersonCreationException;
+import com.demo.softwaretests.person.service.PersonService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;

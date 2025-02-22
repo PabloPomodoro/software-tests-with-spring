@@ -1,6 +1,6 @@
-package com.demo.softwaretests.repository;
+package com.demo.softwaretests.person.repository;
 
-import com.demo.softwaretests.entity.Person;
+import com.demo.softwaretests.person.entity.Person;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;

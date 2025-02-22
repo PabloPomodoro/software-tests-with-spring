@@ -1,9 +1,9 @@
-package com.demo.softwaretests.controller;
+package com.demo.softwaretests.person.controller;
 
-import com.demo.softwaretests.entity.Person;
-import com.demo.softwaretests.exception.PersonCreationErrorResponse;
-import com.demo.softwaretests.exception.PersonCreationException;
-import com.demo.softwaretests.service.PersonService;
+import com.demo.softwaretests.person.entity.Person;
+import com.demo.softwaretests.person.exception.PersonCreationErrorResponse;
+import com.demo.softwaretests.person.exception.PersonCreationException;
+import com.demo.softwaretests.person.service.PersonService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

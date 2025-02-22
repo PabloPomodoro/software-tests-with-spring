@@ -1,6 +1,6 @@
-package com.demo.softwaretests.repository;
+package com.demo.softwaretests.person.repository;
 
-import com.demo.softwaretests.entity.Person;
+import com.demo.softwaretests.person.entity.Person;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

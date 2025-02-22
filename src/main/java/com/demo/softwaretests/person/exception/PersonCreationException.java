@@ -1,4 +1,4 @@
-package com.demo.softwaretests.exception;
+package com.demo.softwaretests.person.exception;
 
 public class PersonCreationException extends RuntimeException{
 
