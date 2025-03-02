@@ -1,5 +1,6 @@
 package com.demo.softwaretests.person.controller;
 
+import com.demo.softwaretests.person.util.TestDataUtil;
 import com.demo.softwaretests.person.entity.Person;
 import com.demo.softwaretests.person.exception.PersonCreationErrorResponse;
 import com.demo.softwaretests.person.exception.PersonCreationException;
@@ -27,35 +28,18 @@ public class PersonControllerTest {
     @InjectMocks
     private PersonController personController;
 
-    private Person richard;
-    private Person guenther;
-    private Person lilliane;
+
 
     @BeforeEach
     void setUp() {
         MockitoAnnotations.openMocks(this);
-
-        richard = new Person();
-        richard.setFullName("Richard Rüdiger");
-        richard.setEmailAddress("richard.ruediger@gmail.com");
-        richard.setAge(41);
-
-        guenther = new Person();
-        guenther.setFullName("Günther Grandiger");
-        guenther.setEmailAddress("guenther.grandiger@gmail.com");
-        guenther.setAge(55);
-
-        lilliane = new Person();
-        lilliane.setFullName("Lilliane Langdorf");
-        lilliane.setEmailAddress("lilliane.langdorf@icloud.com");
-        lilliane.setAge(29);
     }
 
     @Test
     void givenValidEmailDomain_whenGetAllPersonsByEmailDomain_thenReturnPersonsList() {
         // Arrange
         String domain = "gmail.com";
-        List<Person> persons = List.of(richard, guenther);
+        List<Person> persons = TestDataUtil.listOfRichardAndGuenther();
         when(personService.getAllPersonsByEmailDomain(domain)).thenReturn(persons);
 
         // Act
@@ -72,7 +56,7 @@ public class PersonControllerTest {
         // Arrange
         int fromAge = 30;
         int toAge = 45;
-        List<Person> persons = List.of(richard, lilliane);
+        List<Person> persons = TestDataUtil.listOfRichardAndLilliane();
         when(personService.getAllPersonsByAgeRange(fromAge, toAge)).thenReturn(persons);
 
         // Act

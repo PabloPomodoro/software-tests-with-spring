@@ -1,6 +1,7 @@
 package com.demo.softwaretests.person.repository;
 
 import com.demo.softwaretests.person.entity.Person;
+import com.demo.softwaretests.person.util.TestDataUtil;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,23 +19,8 @@ public class PersonRepositoryTest {
 
     @BeforeEach
     void setUp() {
-        Person richard = new Person();
-        richard.setFullName("Richard Rüdiger");
-        richard.setEmailAddress("richard.ruediger@gmail.com");
-        richard.setAge(41);
-
-        Person guenther = new Person();
-        guenther.setFullName("Günther Grandiger");
-        guenther.setEmailAddress("guenther.grandiger@gmail.com");
-        guenther.setAge(55);
-
-        Person lilliane = new Person();
-        lilliane.setFullName("Lilliane Langdorf");
-        lilliane.setEmailAddress("lilliane.langdorf@icloud.com");
-        lilliane.setAge(29);
-
         personRepository.saveAll(
-                List.of(richard, guenther, lilliane)
+                TestDataUtil.listOfRichardAndGuentherAndLilliane()
         );
     }
 
@@ -57,7 +43,7 @@ public class PersonRepositoryTest {
     }
 
     @Test
-    void givenPersonsWithDifferentEmailDomains_whenFindAllByEmailAddressEndsWith_thenReturnPersonsWithEmailDomainEmailAddress() {
+    void givenPersonsWithDifferentEmailAddresses_whenFindAllByEmailAddressEndsWith_thenReturnPersonsWithEmailDomainEmailAddress() {
         // Arrange
         String emailDomain = "@gmail.com";
 
@@ -74,7 +60,7 @@ public class PersonRepositoryTest {
     }
 
     @Test
-    void givenPersonWithEmail_whenExistsByEmailAddress_thenReturnTrue() {
+    void givenEmailAddressInDb_whenExistsByEmailAddress_thenReturnTrue() {
         // Arrange
         String emailAddress = "lilliane.langdorf@icloud.com";
 
@@ -86,7 +72,7 @@ public class PersonRepositoryTest {
     }
 
     @Test
-    void givenNoPersonWithEmail_whenExistsByEmailAddress_thenReturnFalse() {
+    void givenEmailAddressNotInDb_whenExistsByEmailAddress_thenReturnFalse() {
         // Arrange
         String emailAddress = "example@gmail.com";
 
