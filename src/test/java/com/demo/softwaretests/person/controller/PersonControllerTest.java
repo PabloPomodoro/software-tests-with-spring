@@ -91,7 +91,11 @@ public class PersonControllerTest {
     void givenPersonCreationException_whenHandleUserCreationException_thenReturnErrorResponse() {
         // Arrange
         PersonCreationException exception = new PersonCreationException("Invalid data");
-        PersonCreationErrorResponse expectedResponse = new PersonCreationErrorResponse("Person could not be created!", "Invalid data");
+        PersonCreationErrorResponse expectedResponse =
+                new PersonCreationErrorResponse(
+                        "Person could not be created!",
+                        "Invalid data"
+                );
 
         // Act
         ResponseEntity<PersonCreationErrorResponse> response = personController.handleUserCreationException(exception);

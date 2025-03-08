@@ -43,7 +43,7 @@ public class PersonRepositoryTest {
     }
 
     @Test
-    void givenPersonsWithDifferentEmailAddresses_whenFindAllByEmailAddressEndsWith_thenReturnPersonsWithEmailDomainEmailAddress() {
+    void givenPersonsWithDifferentEmailAddresses_whenFindAllByEmailAddressEndsWith_thenReturnPersonsWithSameDomains() {
         // Arrange
         String emailDomain = "@gmail.com";
 

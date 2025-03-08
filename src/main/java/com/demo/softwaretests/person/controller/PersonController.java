@@ -30,8 +30,10 @@ public class PersonController {
     }
 
     @GetMapping("/age-range")
-    public ResponseEntity<List<Person>> getAllPersonsByAgeRange(@RequestParam("fromAge") int fromAge, @RequestParam("toAge") int toAge) {
-
+    public ResponseEntity<List<Person>> getAllPersonsByAgeRange(
+            @RequestParam("fromAge") int fromAge,
+            @RequestParam("toAge") int toAge
+    ) {
         return ResponseEntity
                 .status(HttpStatus.OK)
                 .body(personService.getAllPersonsByAgeRange(fromAge, toAge));
@@ -50,8 +52,9 @@ public class PersonController {
     }
 
     @ExceptionHandler(PersonCreationException.class)
-    public ResponseEntity<PersonCreationErrorResponse> handleUserCreationException(PersonCreationException personCreationException) {
-
+    public ResponseEntity<PersonCreationErrorResponse> handleUserCreationException(
+            PersonCreationException personCreationException
+    ) {
         return new ResponseEntity<>(
                 new PersonCreationErrorResponse("Person could not be created!", personCreationException.getMessage()),
                 HttpStatus.BAD_REQUEST

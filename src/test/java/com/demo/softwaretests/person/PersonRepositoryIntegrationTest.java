@@ -47,7 +47,8 @@ class PersonRepositoryIntegrationTest {
 
         // Assert
         assertThat(persons).hasSize(2);
-        assertThat(persons).extracting(Person::getEmailAddress)
+        assertThat(persons)
+                .extracting(Person::getEmailAddress)
                 .containsExactly("richard.ruediger@gmail.com", "guenther.grandiger@gmail.com");
     }
 
