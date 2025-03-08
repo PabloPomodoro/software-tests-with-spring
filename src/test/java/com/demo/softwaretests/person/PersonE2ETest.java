@@ -130,8 +130,8 @@ class PersonE2ETest {
                         .param("email", email)
                         .param("dateOfBirth", dateOfBirth.toString()))
                 .andExpect(status().isBadRequest())
-                .andExpect(jsonPath("$.message").value("Person could not be created!"))
-                .andExpect(jsonPath("$.details").value("The email address: " + email + " is already in use."));
+                .andExpect(jsonPath("$.errorMessage").value("Person could not be created!"))
+                .andExpect(jsonPath("$.exceptionReason").value("The email address: " + email + " is already in use."));
     }
 
     @Test
