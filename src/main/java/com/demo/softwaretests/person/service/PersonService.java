@@ -29,8 +29,9 @@ public class PersonService {
     }
 
     public void createPerson(String firstName, String lastName, String email, LocalDate dateOfBirth) {
-        Person person = new Person();
+        validateParameters(dateOfBirth, email);
 
+        Person person = new Person();
         person.setFullName(firstName + " " + lastName);
         person.setEmailAddress(email);
         person.setAge(calculateAge(dateOfBirth, LocalDate.now()));
