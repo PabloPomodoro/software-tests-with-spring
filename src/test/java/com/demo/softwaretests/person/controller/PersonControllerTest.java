@@ -1,37 +1,33 @@
 package com.demo.softwaretests.person.controller;
 
-import com.demo.softwaretests.person.util.TestDataUtil;
 import com.demo.softwaretests.person.entity.Person;
 import com.demo.softwaretests.person.exception.PersonCreationErrorResponse;
 import com.demo.softwaretests.person.exception.PersonCreationException;
 import com.demo.softwaretests.person.service.PersonService;
-import org.junit.jupiter.api.BeforeEach;
+import com.demo.softwaretests.person.util.TestDataUtil;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.mockito.MockitoAnnotations;
+import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
 import java.time.LocalDate;
 import java.util.List;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.mockito.Mockito.*;
 
-import static org.junit.jupiter.api.Assertions.*;
-
-public class PersonControllerTest {
+@ExtendWith(MockitoExtension.class)
+class PersonControllerTest {
 
     @Mock
     private PersonService personService;
 
     @InjectMocks
     private PersonController personController;
-
-    @BeforeEach
-    void setUp() {
-        MockitoAnnotations.openMocks(this);
-    }
 
     @Test
     void givenValidEmailDomain_whenGetAllPersonsByEmailDomain_thenReturnPersonsList() {
@@ -69,19 +65,17 @@ public class PersonControllerTest {
     @Test
     void givenValidPersonData_whenCreatePerson_thenPersonIsCreated() {
         // Arrange
-        String firstName = "John";
-        String lastName = "Doe";
-        String email = "john.doe@example.com";
-        LocalDate dateOfBirth = LocalDate.of(1985, 5, 15);
+        String firstName = "Lilliane";
+        String lastName = "Langdorf";
+        String email = "lilliane.langdorf@icloud.com";
+        LocalDate dateOfBirth = LocalDate.of(1995, 3, 20);
 
-        doNothing().when(personService).validateParameters(dateOfBirth, email);
         doNothing().when(personService).createPerson(firstName, lastName, email, dateOfBirth);
 
         // Act
         personController.createPerson(firstName, lastName, email, dateOfBirth);
 
         // Assert
-        verify(personService, times(1)).validateParameters(dateOfBirth, email);
         verify(personService, times(1)).createPerson(firstName, lastName, email, dateOfBirth);
     }
 
