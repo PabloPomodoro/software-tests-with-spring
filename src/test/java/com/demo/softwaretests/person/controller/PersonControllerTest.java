@@ -28,8 +28,6 @@ public class PersonControllerTest {
     @InjectMocks
     private PersonController personController;
 
-
-
     @BeforeEach
     void setUp() {
         MockitoAnnotations.openMocks(this);
