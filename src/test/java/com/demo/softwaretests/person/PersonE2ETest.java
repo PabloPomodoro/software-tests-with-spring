@@ -1,50 +1,50 @@
 package com.demo.softwaretests.person;
 
 import com.demo.softwaretests.person.controller.PersonController;
-import com.demo.softwaretests.person.entity.Person;
-import com.demo.softwaretests.person.exception.PersonCreationException;
+import com.demo.softwaretests.person.repository.PersonRepository;
 import com.demo.softwaretests.person.service.PersonService;
 import com.demo.softwaretests.person.util.TestDataUtil;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.mockito.InjectMocks;
-import org.mockito.Mock;
-import org.mockito.MockitoAnnotations;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
+import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.web.servlet.MockMvc;
-import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
 import java.time.LocalDate;
-import java.util.List;
 
-import static org.mockito.Mockito.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
+@SpringBootTest
+@AutoConfigureMockMvc
 class PersonE2ETest {
 
+    @Autowired
     private MockMvc mockMvc;
 
-    @Mock
+    @Autowired
     private PersonService personService;
 
-    @InjectMocks
+    @Autowired
     private PersonController personController;
+
+    @Autowired
+    private PersonRepository personRepository;
 
     @BeforeEach
     void setUp() {
-        MockitoAnnotations.openMocks(this);
-        mockMvc = MockMvcBuilders.standaloneSetup(personController).build();
+        personRepository.deleteAll();
+        personRepository.save(TestDataUtil.richard());
+        personRepository.save(TestDataUtil.bianca());
     }
 
     @Test
     void givenPersonWithEmailDomain_whenGetAllPersonsByEmailDomain_thenReturnRichard() throws Exception {
         // Arrange
         String domain = "gmail.com";
-
-        List<Person> persons = TestDataUtil.listOfRichard();
-        when(personService.getAllPersonsByEmailDomain(domain)).thenReturn(persons);
 
         // Act & Assert
         mockMvc.perform(get("/persons/email-domain/{domain}", domain))
@@ -58,9 +58,6 @@ class PersonE2ETest {
         // Arrange
         int fromAge = 20;
         int toAge = 30;
-
-        List<Person> persons = TestDataUtil.listOfBianca();
-        when(personService.getAllPersonsByAgeRange(fromAge, toAge)).thenReturn(persons);
 
         // Act & Assert
         mockMvc.perform(get("/persons/age-range")
@@ -96,10 +93,6 @@ class PersonE2ETest {
         String email = "junior.jamestown@hotmail.com";
         LocalDate dateOfBirth = LocalDate.of(2010, 1, 1);
 
-        doThrow(new PersonCreationException("The minimum required age is 18."))
-                .when(personService)
-                .validateParameters(dateOfBirth, email);
-
         // Act & Assert
         mockMvc.perform(post("/persons/create")
                         .param("firstName", firstName)
@@ -119,10 +112,6 @@ class PersonE2ETest {
         String email = "richard.ruediger@gmail.com";
         LocalDate dateOfBirth = LocalDate.of(1990, 1, 1);
 
-        doThrow(new PersonCreationException("The email address: " + email + " is already in use."))
-                .when(personService)
-                .validateParameters(dateOfBirth, email);
-
         // Act & Assert
         mockMvc.perform(post("/persons/create")
                         .param("firstName", firstName)
@@ -141,8 +130,6 @@ class PersonE2ETest {
         String lastName = "Eidhoven";
         String email = "emma.eidhoven@hotmail.com";
         LocalDate dateOfBirth = LocalDate.of(1990, 1, 1);
-
-        doNothing().when(personService).validateParameters(dateOfBirth, email);
 
         // Act & Assert
         mockMvc.perform(post("/persons/create")
