@@ -14,15 +14,8 @@ public class PersonCreationErrorResponse {
         return errorMessage;
     }
 
-    public void setErrorMessage(String errorMessage) {
-        this.errorMessage = errorMessage;
-    }
-
     public String getExceptionReason() {
         return exceptionReason;
     }
 
-    public void setExceptionReason(String exceptionReason) {
-        this.exceptionReason = exceptionReason;
-    }
 }
