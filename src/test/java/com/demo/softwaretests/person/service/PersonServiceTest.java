@@ -3,7 +3,7 @@ package com.demo.softwaretests.person.service;
 import com.demo.softwaretests.person.entity.Person;
 import com.demo.softwaretests.person.exception.PersonCreationException;
 import com.demo.softwaretests.person.repository.PersonRepository;
-import org.junit.jupiter.api.BeforeEach;
+import com.demo.softwaretests.person.util.TestDataUtil;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
@@ -24,21 +24,11 @@ public class PersonServiceTest {
     @InjectMocks
     private PersonService personService;
 
-    private Person richard;
-
-    @BeforeEach
-    public void setUp() {
-        richard = new Person();
-        richard.setFullName("Richard Rüdiger");
-        richard.setEmailAddress("richard.ruediger@gmail.com");
-        richard.setAge(41);
-    }
-
     @Test
     public void givenEmailDomain_whenGetAllPersonsByEmailDomain_thenReturnPersons() {
         // Arrange
         String domain = "@gmail.com";
-        when(personRepository.findAllByEmailAddressEndsWith(domain)).thenReturn(List.of(richard));
+        when(personRepository.findAllByEmailAddressEndsWith(domain)).thenReturn(TestDataUtil.listOfRichard());
 
         // Act
         List<Person> persons = personService.getAllPersonsByEmailDomain(domain);
@@ -54,7 +44,7 @@ public class PersonServiceTest {
         // Arrange
         int fromAge = 30;
         int toAge = 50;
-        when(personRepository.findAllByAgeBetween(fromAge, toAge)).thenReturn(List.of(richard));
+        when(personRepository.findAllByAgeBetween(fromAge, toAge)).thenReturn(TestDataUtil.listOfRichard());
 
         // Act
         List<Person> persons = personService.getAllPersonsByAgeRange(fromAge, toAge);
