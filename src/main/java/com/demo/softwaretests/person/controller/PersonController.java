@@ -47,7 +47,6 @@ public class PersonController {
             @RequestParam("email") String email,
             @RequestParam("dateOfBirth") LocalDate dateOfBirth
     ) {
-        personService.validateParameters(dateOfBirth, email);
         personService.createPerson(firstName, lastName, email, dateOfBirth);
     }
 
