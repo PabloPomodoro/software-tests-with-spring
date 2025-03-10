@@ -29,8 +29,6 @@ public class PersonService {
     }
 
     public void createPerson(String firstName, String lastName, String email, LocalDate dateOfBirth) {
-        validateParameters(dateOfBirth, email);
-
         Person person = new Person();
         person.setFullName(firstName + " " + lastName);
         person.setEmailAddress(email);
