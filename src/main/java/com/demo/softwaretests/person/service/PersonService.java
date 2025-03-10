@@ -30,7 +30,7 @@ public class PersonService {
 
     public void createPerson(String firstName, String lastName, String email, LocalDate dateOfBirth) {
         validateParameters(dateOfBirth, email);
-        
+
         var person = new Person();
         person.setFullName(firstName + " " + lastName);
         person.setEmailAddress(email);
