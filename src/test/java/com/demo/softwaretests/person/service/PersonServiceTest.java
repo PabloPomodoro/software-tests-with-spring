@@ -28,7 +28,7 @@ public class PersonServiceTest {
     @Test
     public void givenEmailDomain_whenGetAllPersonsByEmailDomain_thenReturnPersons() {
         // Arrange
-        String domain = "@gmail.com";
+        var domain = "@gmail.com";
         when(personRepository.findAllByEmailAddressEndsWith(domain)).thenReturn(TestDataUtil.listOfRichard());
 
         // Act
@@ -61,10 +61,10 @@ public class PersonServiceTest {
     @Test
     public void givenPersonDetails_whenCreatePerson_thenSavePerson() {
         // Arrange
-        String firstName = "Lilliane";
-        String lastName = "Langdorf";
-        String email = "lilliane.langdorf@icloud.com";
-        LocalDate dateOfBirth = LocalDate.of(1995, 3, 20);
+        var firstName = "Lilliane";
+        var lastName = "Langdorf";
+        var email = "lilliane.langdorf@icloud.com";
+        var dateOfBirth = LocalDate.of(1995, 3, 20);
 
         // Act
         personService.createPerson(firstName, lastName, email, dateOfBirth);
@@ -76,8 +76,8 @@ public class PersonServiceTest {
     @Test
     public void givenBirthDate_whenCalculateAge_thenReturnCorrectAge() {
         // Arrange
-        LocalDate birthDate = LocalDate.of(1994, 7, 30);
-        LocalDate thirtiethBirthDay = LocalDate.of(2024, 7, 30);
+        var birthDate = LocalDate.of(1994, 7, 30);
+        var thirtiethBirthDay = LocalDate.of(2024, 7, 30);
 
         // Act
         int age = personService.calculateAge(birthDate, thirtiethBirthDay);
@@ -89,8 +89,8 @@ public class PersonServiceTest {
     @Test
     public void givenValidParameters_whenValidateParameters_thenDoNotThrowException() {
         // Arrange
-        String email = "example@gmail.com";
-        LocalDate dateOfBirth = LocalDate.of(2000, 1, 1);
+        var email = "example@gmail.com";
+        var dateOfBirth = LocalDate.of(2000, 1, 1);
 
         // Act & Assert
         assertDoesNotThrow(() -> personService.validateParameters(dateOfBirth, email));
@@ -99,8 +99,8 @@ public class PersonServiceTest {
     @Test
     public void givenTooYoungPerson_whenValidateParameters_thenThrowPersonCreationException() {
         // Arrange
-        String email = "example@gmail.com";
-        LocalDate dateOfBirth = LocalDate.of(2010, 1, 1);
+        var email = "example@gmail.com";
+        var dateOfBirth = LocalDate.of(2010, 1, 1);
 
         // Act & Assert
         PersonCreationException personCreationException = assertThrows(
@@ -113,8 +113,8 @@ public class PersonServiceTest {
     @Test
     public void givenDuplicateEmail_whenValidateParameters_thenThrowPersonCreationException() {
         // Arrange
-        String email = "example@gmail.com";
-        LocalDate dateOfBirth = LocalDate.of(1990, 1, 1);
+        var email = "example@gmail.com";
+        var dateOfBirth = LocalDate.of(1990, 1, 1);
         when(personRepository.existsByEmailAddress(email)).thenReturn(true);
 
         // Act & Assert

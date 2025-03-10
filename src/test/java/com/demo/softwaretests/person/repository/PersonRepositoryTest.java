@@ -2,7 +2,6 @@ package com.demo.softwaretests.person.repository;
 
 import com.demo.softwaretests.person.entity.Person;
 import com.demo.softwaretests.person.util.TestDataUtil;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
@@ -18,13 +17,6 @@ class PersonRepositoryTest {
 
     @Mock
     private PersonRepository personRepository;
-
-    private List<Person> persons;
-
-    @BeforeEach
-    void setUp() {
-        persons = TestDataUtil.listOfRichardAndGuentherAndLilliane();
-    }
 
     @Test
     void givenAllPersons_whenFindAllByAgeBetween_thenReturnPersonsInAgeRange() {
@@ -47,7 +39,7 @@ class PersonRepositoryTest {
     @Test
     void givenPersonsWithDifferentEmailAddresses_whenFindAllByEmailAddressEndsWith_thenReturnPersonsWithSameDomains() {
         // Arrange
-        String emailDomain = "@gmail.com";
+        var emailDomain = "@gmail.com";
 
         when(personRepository.findAllByEmailAddressEndsWith(emailDomain)).thenReturn(TestDataUtil.listOfRichardAndGuenther());
 
@@ -64,7 +56,7 @@ class PersonRepositoryTest {
     @Test
     void givenEmailAddressInDb_whenExistsByEmailAddress_thenReturnTrue() {
         // Arrange
-        String emailAddress = "lilliane.langdorf@icloud.com";
+        var emailAddress = "lilliane.langdorf@icloud.com";
         when(personRepository.existsByEmailAddress(emailAddress)).thenReturn(true);
 
         // Act
@@ -77,7 +69,7 @@ class PersonRepositoryTest {
     @Test
     void givenEmailAddressNotInDb_whenExistsByEmailAddress_thenReturnFalse() {
         // Arrange
-        String emailAddress = "new.address@gmail.com";
+        var emailAddress = "new.address@gmail.com";
         when(personRepository.existsByEmailAddress(emailAddress)).thenReturn(false);
 
         // Act

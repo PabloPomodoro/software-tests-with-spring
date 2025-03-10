@@ -2,8 +2,8 @@ package com.demo.softwaretests.person.exception;
 
 public class PersonCreationErrorResponse {
 
-    private String errorMessage;
-    private String exceptionReason;
+    private final String errorMessage;
+    private final String exceptionReason;
 
     public PersonCreationErrorResponse(String errorMessage, String exceptionReason) {
         this.errorMessage = errorMessage;

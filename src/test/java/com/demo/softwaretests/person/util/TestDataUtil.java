@@ -9,7 +9,7 @@ public class TestDataUtil {
     private TestDataUtil() {}
 
     public static Person richard() {
-        Person richard = new Person();
+        var richard = new Person();
         richard.setFullName("Richard Rüdiger");
         richard.setEmailAddress("richard.ruediger@gmail.com");
         richard.setAge(41);
@@ -17,7 +17,7 @@ public class TestDataUtil {
     }
 
     public static Person guenther() {
-        Person guenther = new Person();
+        var guenther = new Person();
         guenther.setFullName("Günther Grandiger");
         guenther.setEmailAddress("guenther.grandiger@gmail.com");
         guenther.setAge(55);
@@ -25,7 +25,7 @@ public class TestDataUtil {
     }
 
     public static Person lilliane() {
-        Person lilliane = new Person();
+        var lilliane = new Person();
         lilliane.setFullName("Lilliane Langdorf");
         lilliane.setEmailAddress("lilliane.langdorf@icloud.com");
         lilliane.setAge(29);
@@ -33,7 +33,7 @@ public class TestDataUtil {
     }
 
     public static Person bianca() {
-        Person bianca = new Person();
+        var bianca = new Person();
         bianca.setFullName("Bianca Bambus");
         bianca.setEmailAddress("bianca.bambus@yahoo.com");
         bianca.setAge(22);

@@ -32,7 +32,7 @@ class PersonControllerTest {
     @Test
     void givenValidEmailDomain_whenGetAllPersonsByEmailDomain_thenReturnPersonsList() {
         // Arrange
-        String domain = "gmail.com";
+        var domain = "gmail.com";
         List<Person> persons = TestDataUtil.listOfRichardAndGuenther();
         when(personService.getAllPersonsByEmailDomain(domain)).thenReturn(persons);
 
@@ -65,10 +65,10 @@ class PersonControllerTest {
     @Test
     void givenValidPersonData_whenCreatePerson_thenPersonIsCreated() {
         // Arrange
-        String firstName = "Lilliane";
-        String lastName = "Langdorf";
-        String email = "lilliane.langdorf@icloud.com";
-        LocalDate dateOfBirth = LocalDate.of(1995, 3, 20);
+        var firstName = "Lilliane";
+        var lastName = "Langdorf";
+        var email = "lilliane.langdorf@icloud.com";
+        var dateOfBirth = LocalDate.of(1995, 3, 20);
 
         doNothing().when(personService).createPerson(firstName, lastName, email, dateOfBirth);
 
@@ -82,12 +82,11 @@ class PersonControllerTest {
     @Test
     void givenPersonCreationException_whenHandleUserCreationException_thenReturnErrorResponse() {
         // Arrange
-        PersonCreationException exception = new PersonCreationException("Invalid data");
-        PersonCreationErrorResponse expectedResponse =
-                new PersonCreationErrorResponse(
-                        "Person could not be created!",
-                        "Invalid data"
-                );
+        var exception = new PersonCreationException("Invalid data");
+        var expectedResponse = new PersonCreationErrorResponse(
+                "Person could not be created!",
+                "Invalid data"
+        );
 
         // Act
         ResponseEntity<PersonCreationErrorResponse> response = personController.handleUserCreationException(exception);

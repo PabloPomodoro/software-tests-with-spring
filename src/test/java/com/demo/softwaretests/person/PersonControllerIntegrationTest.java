@@ -91,7 +91,7 @@ class PersonControllerIntegrationTest {
         var firstName = "Junior";
         var lastName = "Jamestown";
         var email = "junior.jamestown@hotmail.com";
-        var dateOfBirth = LocalDate.of(2010, 1, 1);
+        var dateOfBirth = LocalDate.now().minusYears(15);
 
         // Act & Assert
         mockMvc.perform(post("/persons/create")
