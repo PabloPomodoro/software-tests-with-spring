@@ -4,9 +4,9 @@ import com.demo.softwaretests.person.entity.Person;
 
 import java.util.List;
 
-public class TestDataUtil {
+public class Persons {
 
-    private TestDataUtil() {}
+    private Persons() {}
 
     public static Person richard() {
         var richard = new Person();
@@ -38,10 +38,6 @@ public class TestDataUtil {
         bianca.setEmailAddress("bianca.bambus@yahoo.com");
         bianca.setAge(22);
         return bianca;
-    }
-
-    public static List<Person> listOfBianca() {
-        return List.of(bianca());
     }
 
     public static List<Person> listOfRichard() {

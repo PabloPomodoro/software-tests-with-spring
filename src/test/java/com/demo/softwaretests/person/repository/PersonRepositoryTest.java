@@ -1,7 +1,7 @@
 package com.demo.softwaretests.person.repository;
 
 import com.demo.softwaretests.person.entity.Person;
-import com.demo.softwaretests.person.util.TestDataUtil;
+import com.demo.softwaretests.person.util.Persons;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
@@ -24,7 +24,7 @@ class PersonRepositoryTest {
         int fromAge = 25;
         int toAge = 45;
 
-        when(personRepository.findAllByAgeBetween(fromAge, toAge)).thenReturn(TestDataUtil.listOfRichardAndLilliane());
+        when(personRepository.findAllByAgeBetween(fromAge, toAge)).thenReturn(Persons.listOfRichardAndLilliane());
 
         // Act
         List<Person> persons = personRepository.findAllByAgeBetween(fromAge, toAge);
@@ -41,7 +41,7 @@ class PersonRepositoryTest {
         // Arrange
         var emailDomain = "@gmail.com";
 
-        when(personRepository.findAllByEmailAddressEndsWith(emailDomain)).thenReturn(TestDataUtil.listOfRichardAndGuenther());
+        when(personRepository.findAllByEmailAddressEndsWith(emailDomain)).thenReturn(Persons.listOfRichardAndGuenther());
 
         // Act
         List<Person> persons = personRepository.findAllByEmailAddressEndsWith(emailDomain);

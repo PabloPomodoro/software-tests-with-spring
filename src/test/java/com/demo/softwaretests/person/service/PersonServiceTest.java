@@ -3,7 +3,7 @@ package com.demo.softwaretests.person.service;
 import com.demo.softwaretests.person.entity.Person;
 import com.demo.softwaretests.person.exception.PersonCreationException;
 import com.demo.softwaretests.person.repository.PersonRepository;
-import com.demo.softwaretests.person.util.TestDataUtil;
+import com.demo.softwaretests.person.util.Persons;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -29,7 +29,7 @@ public class PersonServiceTest {
     public void givenEmailDomain_whenGetAllPersonsByEmailDomain_thenReturnPersons() {
         // Arrange
         var domain = "@gmail.com";
-        when(personRepository.findAllByEmailAddressEndsWith(domain)).thenReturn(TestDataUtil.listOfRichard());
+        when(personRepository.findAllByEmailAddressEndsWith(domain)).thenReturn(Persons.listOfRichard());
 
         // Act
         List<Person> persons = personService.getAllPersonsByEmailDomain(domain);
@@ -45,7 +45,7 @@ public class PersonServiceTest {
         // Arrange
         int fromAge = 30;
         int toAge = 50;
-        when(personRepository.findAllByAgeBetween(fromAge, toAge)).thenReturn(TestDataUtil.listOfRichard());
+        when(personRepository.findAllByAgeBetween(fromAge, toAge)).thenReturn(Persons.listOfRichard());
 
         // Act
         List<Person> persons = personService.getAllPersonsByAgeRange(fromAge, toAge);

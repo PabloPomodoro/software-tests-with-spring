@@ -4,7 +4,7 @@ import com.demo.softwaretests.person.entity.Person;
 import com.demo.softwaretests.person.exception.PersonCreationException;
 import com.demo.softwaretests.person.repository.PersonRepository;
 import com.demo.softwaretests.person.service.PersonService;
-import com.demo.softwaretests.person.util.TestDataUtil;
+import com.demo.softwaretests.person.util.Persons;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -69,7 +69,7 @@ class PersonServiceIntegrationTest {
     @Test
     void givenDuplicateEmail_whenCreatePerson_thenThrowsException() {
         // Arrange
-        Person richard = TestDataUtil.richard();
+        Person richard = Persons.richard();
         personRepository.save(richard);
 
         // Act & Assert
@@ -86,7 +86,7 @@ class PersonServiceIntegrationTest {
     @Test
     void givenPersonsWithDifferentAges_whenGetAllPersonsByAgeRange_thenReturnsMatchingPersons() {
         // Arrange
-        personRepository.saveAll(TestDataUtil.listOfRichardAndGuentherAndLilliane());
+        personRepository.saveAll(Persons.listOfRichardAndGuentherAndLilliane());
 
         // Act
         List<Person> persons = personService.getAllPersonsByAgeRange(25, 45);
@@ -103,7 +103,7 @@ class PersonServiceIntegrationTest {
     @Test
     void givenPersonsWithDifferentEmails_whenGetAllPersonsByEmailDomain_thenReturnsMatchingPersons() {
         // Arrange
-        personRepository.saveAll(TestDataUtil.listOfRichardAndGuentherAndLilliane());
+        personRepository.saveAll(Persons.listOfRichardAndGuentherAndLilliane());
 
         // Act
         List<Person> persons = personService.getAllPersonsByEmailDomain("@gmail.com");

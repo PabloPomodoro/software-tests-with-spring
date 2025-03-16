@@ -4,7 +4,7 @@ import com.demo.softwaretests.person.entity.Person;
 import com.demo.softwaretests.person.exception.PersonCreationErrorResponse;
 import com.demo.softwaretests.person.exception.PersonCreationException;
 import com.demo.softwaretests.person.service.PersonService;
-import com.demo.softwaretests.person.util.TestDataUtil;
+import com.demo.softwaretests.person.util.Persons;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -33,7 +33,7 @@ class PersonControllerTest {
     void givenValidEmailDomain_whenGetAllPersonsByEmailDomain_thenReturnPersonsList() {
         // Arrange
         var domain = "gmail.com";
-        List<Person> persons = TestDataUtil.listOfRichardAndGuenther();
+        List<Person> persons = Persons.listOfRichardAndGuenther();
         when(personService.getAllPersonsByEmailDomain(domain)).thenReturn(persons);
 
         // Act
@@ -50,7 +50,7 @@ class PersonControllerTest {
         // Arrange
         int fromAge = 30;
         int toAge = 45;
-        List<Person> persons = TestDataUtil.listOfRichardAndLilliane();
+        List<Person> persons = Persons.listOfRichardAndLilliane();
         when(personService.getAllPersonsByAgeRange(fromAge, toAge)).thenReturn(persons);
 
         // Act

@@ -2,7 +2,7 @@ package com.demo.softwaretests.person;
 
 import com.demo.softwaretests.person.entity.Person;
 import com.demo.softwaretests.person.repository.PersonRepository;
-import com.demo.softwaretests.person.util.TestDataUtil;
+import com.demo.softwaretests.person.util.Persons;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,7 +20,7 @@ class PersonRepositoryIntegrationTest {
 
     @BeforeEach
     void setUp() {
-        personRepository.saveAll(TestDataUtil.listOfRichardAndGuentherAndLilliane());
+        personRepository.saveAll(Persons.listOfRichardAndGuentherAndLilliane());
     }
 
     @Test
@@ -67,7 +67,7 @@ class PersonRepositoryIntegrationTest {
     @Test
     void givenPerson_whenSaveAndFindById_thenReturnCorrectPerson() {
         // Arrange
-        Person savedPerson = personRepository.save(TestDataUtil.bianca());
+        Person savedPerson = personRepository.save(Persons.bianca());
 
         // Act
         Person foundPerson = personRepository.findById(savedPerson.getId()).orElseThrow();
@@ -83,7 +83,7 @@ class PersonRepositoryIntegrationTest {
     @Test
     void givenPerson_whenDelete_thenPersonIsDeleted() {
         // Arrange
-        Person bianca = TestDataUtil.bianca();
+        Person bianca = Persons.bianca();
         personRepository.save(bianca);
 
         // Act

@@ -3,7 +3,7 @@ package com.demo.softwaretests.person;
 import com.demo.softwaretests.person.controller.PersonController;
 import com.demo.softwaretests.person.repository.PersonRepository;
 import com.demo.softwaretests.person.service.PersonService;
-import com.demo.softwaretests.person.util.TestDataUtil;
+import com.demo.softwaretests.person.util.Persons;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,8 +37,8 @@ class PersonControllerIntegrationTest {
     @BeforeEach
     void setUp() {
         personRepository.deleteAll();
-        personRepository.save(TestDataUtil.richard());
-        personRepository.save(TestDataUtil.bianca());
+        personRepository.save(Persons.richard());
+        personRepository.save(Persons.bianca());
     }
 
     @Test
